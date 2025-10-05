@@ -90,7 +90,7 @@ RIGHT_EYE_INDICES = [362, 263, 385, 386, 374, 380]
 LEFT_EYE_INDICES = [33, 133, 160, 159, 145, 163]
 
 # --- C. VOSK/SPEECH CONTROL PARAMETERS ---
-MOUTH_OPEN_THRESHOLD = 0.09   # Strict MAR threshold
+MOUTH_OPEN_THRESHOLD = 0.15   # Strict MAR threshold
 MOUTH_HOLD_TIME = 1.5         # Seconds mouth must be held open
 
 # --- D. SCROLL CONTROL PARAMETERS ---
@@ -642,3 +642,4 @@ if __name__ == "__main__":
     time.sleep(3)
     
     start_unified_control()
+
