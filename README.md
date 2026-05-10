@@ -129,6 +129,6 @@ Project: [https://github.com/teddycitrus/iris-application](https://github.com/te
 ## Acknowledgments
 
 - [Hack The Valley X](https://hackthevalley.io/) — for hosting and the Future Impact award
-- [MediaPipe Face Mesh](https://mediapipe.dev/) — landmark detection
+- [MediaPipe Face Mesh](https://ai.google.dev/edge/mediapipe/solutions/guide) — landmark detection
 - [VOSK](https://alphacephei.com/vosk/) — offline speech recognition
 - [Img Shields](https://shields.io) — badges
