@@ -24,13 +24,13 @@ Designed for people with motor impairments, Iris demonstrates that meaningful ac
 
 ## Built With
 
-- [OpenCV](https://opencv.org/)
-- [MediaPipe](https://mediapipe.dev/)
-- [PyAutoGUI](https://pyautogui.readthedocs.io/)
-- [VOSK](https://alphacephei.com/vosk/)
-- [SoundDevice](https://python-sounddevice.readthedocs.io/)
-- [SciPy](https://scipy.org/)
-- [NumPy](https://numpy.org/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-27338e?style=for-the-badge&logo=OpenCV&logoColor=white)](https://opencv.org/)
+[![MediaPipe](https://img.shields.io/badge/MediaPipe-0097A7?style=for-the-badge&logo=google&logoColor=white)](https://mediapipe.dev/)
+[![PyAutoGUI](https://img.shields.io/badge/PyAutoGUI-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://pyautogui.readthedocs.io/)
+[![VOSK](https://img.shields.io/badge/VOSK-FF6F00?style=for-the-badge&logo=audio&logoColor=white)](https://alphacephei.com/vosk/)
+[![SoundDevice](https://img.shields.io/badge/SoundDevice-4CAF50?style=for-the-badge&logo=python&logoColor=white)](https://python-sounddevice.readthedocs.io/)
+[![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white)](https://scipy.org/)
+[![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
 
 ---
 
@@ -93,10 +93,10 @@ Press `Ctrl+C` to stop.
 
 ## Roadmap
 
-- [x] GUI configuration panel for tuning thresholds
-- [x] Multi-language VOSK support
-- [ ] macOS / Linux compatibility (remove `win10toast` dependency)
-- [ ] Packaging as a standalone executable
+- [x] Adaptive EAR baseline calibration — blink/wink thresholds self-adjust at runtime based on your eye openness
+- [x] Input locking during transcription and typing — all gaze/blink/wink inputs are fully frozen to prevent accidental actions
+- [ ] Per-user calibration flow — a guided setup to tune gaze range, dead zone, and blink sensitivity for different face shapes and lighting conditions
+- [ ] macOS / Linux support — remove the `win10toast` dependency and replace with a cross-platform notification layer
 
 ---
 
