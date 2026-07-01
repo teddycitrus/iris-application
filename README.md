@@ -9,7 +9,7 @@
 
 Iris is a Python accessibility tool that lets you control your computer without a mouse. Using a standard webcam it tracks your eye gaze to move the cursor, detects blinks and winks as clicks, and activates speech-to-text by mouth detection, all in real time with no OpenCV window required.
 
-The gaze engine was reworked to be smooth and accurate. It uses a distance-invariant signal that fuses head pose and iris position (both divided by the inter-eye width so it does not matter how close you sit), a One Euro Filter for velocity-adaptive smoothing (steady when you hold still, responsive when you move fast), a magnitude clamp so a single bad frame cannot fling the cursor, and a blink freeze so blinking to click does not jerk the aim. This approach is adapted from the gaze/smoothing math in [STERBAN0/Conjure](https://github.com/STERBAN0/Conjure) (algorithms only, none of its visuals).
+The gaze engine was reworked to be smooth and accurate. It uses a distance-invariant signal that fuses head pose and iris position (both divided by the inter-eye width so it does not matter how close you sit), a One Euro Filter for velocity-adaptive smoothing (steady when you hold still, responsive when you move fast), a magnitude clamp so a single bad frame cannot fling the cursor, and a blink freeze so blinking to click does not jerk the aim.
 
 Everything runs from a single `main.py`. The eye-tracking path is fully hands-free; the hand-gesture controls are optional extras that only activate when your hands are visible.
 
@@ -172,7 +172,6 @@ Project: [https://github.com/teddycitrus/iris-application](https://github.com/te
 ## Acknowledgments
 
 - [Hack The Valley X](https://hackthevalley.io/) for hosting and the Future Impact award
-- [STERBAN0/Conjure](https://github.com/STERBAN0/Conjure) for the gaze estimation and smoothing approach adapted here
 - [MediaPipe Face Mesh](https://ai.google.dev/edge/mediapipe/solutions/guide) for landmark detection
 - [VOSK](https://alphacephei.com/vosk/) for offline speech recognition
 - [Img Shields](https://shields.io) for badges

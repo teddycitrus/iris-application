@@ -86,7 +86,7 @@ hands = mp_hands.Hands(
 
 # --- A. GAZE CONTROL PARAMETERS ---
 # Legacy range/alpha params kept for reference; the active gaze pipeline now uses
-# the Conjure-derived distance-invariant estimator + One Euro Filter below.
+# the distance-invariant estimator + One Euro Filter below.
 H_RANGE_MIN = 0.20
 H_RANGE_MAX = 0.80
 V_RANGE_MIN = 0.40
@@ -95,13 +95,13 @@ ALPHA = 0.15      # (legacy) fixed-alpha EMA factor - superseded by One Euro Fil
 BASE_SENSITIVITY = 1.5     # Base cursor speed; hand gesture scales sensitivity around this
 YAW_STRENGTH = 0.5    # (legacy) solvePnP head stabilization - head pose now built into the estimator
 
-# --- A2. CONJURE-DERIVED GAZE ESTIMATION (distance-invariant head + iris fusion) ---
-# One Euro Filter: velocity-adaptive low-pass (Conjure gestures/smoothing.py).
+# --- A2. GAZE ESTIMATION (distance-invariant head + iris fusion) ---
+# One Euro Filter: velocity-adaptive low-pass smoothing.
 ONE_EURO_MIN_CUTOFF = 0.4   # lower = steadier when holding still (less jitter). Try 0.25 if still twitchy.
 ONE_EURO_BETA = 0.06        # higher = snaps to fast looks without lag; offsets the lower min_cutoff
 ONE_EURO_DCUTOFF = 1.0
 
-# Gaze signal gains (Conjure: head 1.5 / iris 1.0), both divided by inter-eye width.
+# Gaze signal gains (head 1.5 / iris 1.0), both divided by inter-eye width.
 GAZE_HEAD_GAIN = 1.5
 GAZE_IRIS_GAIN = 1.0
 GAZE_MAGNITUDE_MAX = 1.6       # anti-runaway clamp on a bad landmark frame
@@ -373,15 +373,13 @@ def extract_landmarks_points(landmarks, indices, w, h):
     return np.array(points)
 
 # =========================================================================
-# GAZE ESTIMATION (ported from STERBAN0/Conjure)
+# GAZE ESTIMATION
 # =========================================================================
 # Two primitives drive the accuracy/smoothness upgrade:
-#   1. OneEuroFilter  - velocity-adaptive low-pass smoothing (Conjure
-#                       gestures/smoothing.py). Steady when still, snappy when
-#                       moving fast. Replaces the old fixed-alpha EMA.
+#   1. OneEuroFilter  - velocity-adaptive low-pass smoothing. Steady when still,
+#                       snappy when moving fast. Replaces the old fixed-alpha EMA.
 #   2. GazeEstimator  - distance-invariant gaze offset combining head pose and
-#                       iris position (Conjure vision/face_tracker.py), magnitude
-#                       clamped and frozen during blinks.
+#                       iris position, magnitude clamped and frozen during blinks.
 
 def _one_euro_alpha(cutoff, freq):
     tau = 1.0 / (2.0 * math.pi * cutoff)
@@ -453,7 +451,7 @@ def _mean_landmark_xy(landmarks, indices):
 
 
 class GazeEstimator:
-    """Distance-invariant gaze-to-cursor estimator (Conjure approach).
+    """Distance-invariant gaze-to-cursor estimator.
 
     raw = head*GAZE_HEAD_GAIN + iris*GAZE_IRIS_GAIN, where both head pose
     (nose - eye_midpoint) and iris offset (iris - eye_socket center) are divided
@@ -1091,7 +1089,7 @@ def start_unified_control():
                     if not right_wink_now and is_right_winking:
                         is_right_winking = False
 
-                    # GAZE CONTROL (Conjure-derived: distance-invariant head+iris
+                    # GAZE CONTROL (distance-invariant head+iris
                     # fusion, magnitude-clamped, One Euro smoothed, blink-frozen).
                     # The left-hand gap still modulates cursor speed via sensitivity_scale.
                     #
